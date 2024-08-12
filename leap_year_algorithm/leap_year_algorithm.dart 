@@ -1,0 +1,34 @@
+import 'dart:io';
+
+void main(List<String> arguments) {
+  int? year = getYearFromUser();
+  if (year != null) {
+    if (isLeapYear(year)) {
+      print('$year is a leap year.');
+    } else {
+      print('$year is not a leap year.');
+    }
+  }
+}
+
+// ユーザーから年を取得する関数
+int? getYearFromUser() {
+  print('Please enter a year:');
+  String? input = stdin.readLineSync();
+
+  if (input != null) {
+    try {
+      return int.parse(input);
+    } catch (e) {
+      print('Error: "$input" is not a valid integer.');
+    }
+  } else {
+    print('Error: No input received.');
+  }
+  return null;
+}
+
+// 閏年かどうかを判定する関数
+bool isLeapYear(int year) {
+  return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
